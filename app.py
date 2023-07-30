@@ -1,10 +1,10 @@
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template,jsonify
 app=Flask(__name__)
 @app.route('/')
 def welcome():
     return "welcome to the flask"
 
-@app.route('/cal',methods=["GET","POST"])
+@app.route('/cal',methods=["GET"])
 def math_operation():
     operation=request.json["operation"]
     number1=request.json["number1"]
@@ -17,7 +17,7 @@ def math_operation():
         result=number1/number2
     else:
         result=number1-number2
-    return result
+    return jsonify(result)
 
 
 print(__name__)
